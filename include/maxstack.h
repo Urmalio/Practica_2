@@ -40,7 +40,7 @@ ostream& operator<<(ostream& os, const element& elemento);
 class MaxStack{
 
 private:
- priority_queue<int,greater<int>> pq{};
+ priority_queue< int, deque<int>, greater<int> > pq{};
  queue<int> q;
 
 public:
@@ -97,4 +97,4 @@ public:
  element top() const;
 
 };
-#endif MAXSTACK_H
+#endif
