@@ -7,6 +7,7 @@
 #ifndef MAXSTACK_H
 #define MAXSTACK_H
 
+#include <ostream>
 #include <queue>
 
 using namespace std;
@@ -39,7 +40,7 @@ ostream& operator<<(ostream& os, const element& elemento);
 class MaxStack{
 
 private:
- priority_queue<int,greater<int>> pq;
+ priority_queue<int,greater<int>> pq{};
  queue<int> q;
 
 public:
@@ -64,34 +65,36 @@ public:
   *
   * @return True si la cola está caía, false si no
   */
- bool empty();
+ bool empty() const;
 
  /**
   * @brief Devuelve el tamaño de la pila
   *
   * @post Devuelve un entero no negativo y 0 solo si la pila está vacía
   */
- int size();
+ int size() const;
 
  //***************** Acceso y Escritura de elementos *****************//
  /**
-  * @brief Añade un elemento en el top de la pila
+  * @brief Añade un elemento en el tope de la pila
   */
  void push(int num);
 
  /**
-  * @brief Devuelve el elemento en el Top de la pila y lo elimina de esta
-  *
-  * @return Un element dónde valor tiene el valor de top de la pila y en maximo el que era el valor máximo en ese momento
+  * @brief Elimina el elemento de el tope de la pila
   *
   * @post El top de la pila y su máximo han podido cambia y en cualquier caso hay un elemento menos en esta
   */
- element pop();
+ void pop();
 
  /**
-  * @brief Devuelve el resultado de pop() pero sin sacar de la pila el elemento
+  * @brief Devuelve un element con el top de la pila
+  *
+  * @pre 0 < size()
+  *
+  * @post Element tiene en valor el tope de la pila y en maximo el maximo de esta
   */
- element fetch() const;
+ element top() const;
 
 };
 #endif MAXSTACK_H
