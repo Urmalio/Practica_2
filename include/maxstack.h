@@ -6,18 +6,33 @@
 
 #ifndef MAXSTACK_H
 #define MAXSTACK_H
+
 #include <queue>
 
 using namespace std;
 
+//****************************** Struct Element ******************************//
 /**
+ * @brief Estructura auxiar para el retorno del par valor-maximo
+ *
+ * Para un par en un momento dado representan:
+ * - valor: el retorno de la estructura semejante de la stl
+ * - maximo: el máximo de la estructura en cierto momento
  *
  */
 struct element{
-  int value;
-  int maximum;
+  int valor;
+  int maximo;
 };
 
+/**
+ * @brief Sobrecarga del operador de salida de un element
+ * El resultado en @p os será de la forma: v | m
+ * Dónde v es el valor y m el máximo
+ */
+ostream& operator<<(ostream& os, const element& elemento);
+
+//****************************** Clase MaxStack ******************************//
 /**
  *
  */
@@ -28,15 +43,55 @@ private:
  queue<int> q;
 
 public:
-/**
- * @brief Constructor por defecto
- * Crea un stack sin elementos
- */
+
+ //***************** Constructores *****************//
+ /**
+  * @brief Constructor por defecto
+  * Crea un stack sin elementos
+  */
  MaxStack();
 
- element push();
- int pop();
- element fetch();
+ /**
+  * @brief Constructor de copia de la clase
+  *
+  * @param cola La cola con la cual se va a inicializar nuestro objeto implícito
+  */
+ MaxStack(const MaxStack & cola );
+
+ //***************** Consulta de propiedades *****************//
+ /**
+  * @brief Comprueba si la cola está vacía
+  *
+  * @return True si la cola está caía, false si no
+  */
+ bool empty();
+
+ /**
+  * @brief Devuelve el tamaño de la pila
+  *
+  * @post Devuelve un entero no negativo y 0 solo si la pila está vacía
+  */
+ int size();
+
+ //***************** Acceso y Escritura de elementos *****************//
+ /**
+  * @brief Añade un elemento en el top de la pila
+  */
+ void push(int num);
+
+ /**
+  * @brief Devuelve el elemento en el Top de la pila y lo elimina de esta
+  *
+  * @return Un element dónde valor tiene el valor de top de la pila y en maximo el que era el valor máximo en ese momento
+  *
+  * @post El top de la pila y su máximo han podido cambia y en cualquier caso hay un elemento menos en esta
+  */
+ element pop();
+
+ /**
+  * @brief Devuelve el resultado de pop() pero sin sacar de la pila el elemento
+  */
+ element fetch() const;
 
 };
 #endif MAXSTACK_H
