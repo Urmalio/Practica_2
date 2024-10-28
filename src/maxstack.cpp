@@ -6,23 +6,28 @@
 
 #include "maxstack.h"
 
+#include <iostream>
+
 using namespace std;
 
 ostream& operator<<(ostream& os, const element& elemento){
 
- os << printf( "%d | %d", elemento.valor, elemento.maximo);
+ char c[100];
+ sprintf( c, "%3d | %3d", elemento.valor, elemento.maximo );
+
+ cout << c;
  return os;
 }
 
 MaxStack::MaxStack()= default;
 
-MaxStack::MaxStack(const MaxStack& cola): pq(cola.pq),q(cola.q){}
+MaxStack::MaxStack(const MaxStack& cola)= default;
 
 bool MaxStack::empty() const { return q.empty(); }
 
 int MaxStack::size() const { return static_cast<int>(q.size()); }
 
-void MaxStack::push(int valor){ q.push(valor); pq.push(valor); }
+void MaxStack::push(int valor){ q.push(valor); pq.push(valor);}
 
 void MaxStack::pop(){
 
@@ -61,9 +66,26 @@ void MaxStack::pop(){
   }
  }
 
+ //longterm free memory (max used 2n)
+ if ( q.size() <= eliminated_nonmax.size() && q.size() > 10 ){
+  priority_queue<int> aux;
+
+  for(int i = 0; i<pq.size(); ++i){
+
+   if( pq.top() == eliminated_nonmax.top() )
+    eliminated_nonmax.pop();
+   else
+    aux.push( eliminated_nonmax.top() );
+
+   pq.pop();
+  }
+
+  pq.swap(aux);
+ }
+
 }
 
-element MaxStack::top() const{ return {q.back(), pq.top()}; }
+element MaxStack::top() const{ return  element{q.back(), pq.top()}; }
 
 
 

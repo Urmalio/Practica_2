@@ -9,6 +9,7 @@
 
 #include <ostream>
 #include <queue>
+#include <cstdio>
 
 using namespace std;
 
@@ -40,7 +41,7 @@ ostream& operator<<(ostream& os, const element& elemento);
 class MaxStack{
 
 private:
- priority_queue< int, deque<int>, greater<int> > pq{};
+ priority_queue<int> pq{};
  queue<int> q;
 
 public:
