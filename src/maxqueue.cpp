@@ -27,6 +27,7 @@ element MaxQueue::back() const
 {
  return element{queue.back(),maximo};
 }
+//
 void MaxQueue::pop()
 {
  if (queue.front() == maximo)
