@@ -33,7 +33,7 @@ struct element{
  */
 ostream& operator<<(ostream& os, const element& elemento);
 
-
+//
 class MaxQueue
 {
  private:
