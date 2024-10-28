@@ -6,24 +6,34 @@
 
 #include "maxqueue.h"
 
+ostream& operator<<(ostream& os, const element& elemento)
+{
+
+ char c[100];
+ sprintf( c, "%3d | %3d", elemento.valor, elemento.maximo );
+
+ cout << c;
+ return os;
+}
+
 MaxQueue::MaxQueue()
 {
  maximo = numeric_limits<int>::min();
 }
 MaxQueue::~MaxQueue() = default;
-bool MaxQueue::empty() const
+bool MaxQueue::empty()
 {
  return queue.empty();
 }
-int MaxQueue::size() const
+int MaxQueue::size()
 {
  return static_cast<int>(queue.size());
 }
-element MaxQueue::front() const
+element MaxQueue::front()
 {
  return element{queue.front(),maximo};
 }
-element MaxQueue::back() const
+element MaxQueue::back()
 {
  return element{queue.back(),maximo};
 }
@@ -31,7 +41,7 @@ element MaxQueue::back() const
 void MaxQueue::pop()
 {
  if (queue.front() == maximo)
-  maximo = *max_element(queue.begin(),queue.end());
+  maximo = *(max_element(++queue.begin(),queue.end()));
  queue.pop_front();
 }
 void MaxQueue::push(int num)

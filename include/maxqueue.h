@@ -42,10 +42,10 @@ class MaxQueue
  public:
   MaxQueue();
   ~MaxQueue();
-  bool empty() const;
-  int size() const;
-  element front() const;
-  element back() const;
+  bool empty();
+  int size();
+  element front();
+  element back();
   void pop();
   void push(int num);
   void swap(MaxQueue & another_queue);
