@@ -14,7 +14,7 @@ class MaxQueue
 {
  private:
  std::list<int> queue;
- std::list<int> ;
+ std::list<int> maximo;
  public:
  MaxQueue();
  ~MaxQueue();
@@ -25,7 +25,7 @@ class MaxQueue
  void emplace();
  void pop();
  void swap();
- friend ostream &operator<<(ostream &os, const MaxQueue &queue);
+ friend std::ostream &operator<<(std::ostream &os, const MaxQueue &queue);
 };
 
 
