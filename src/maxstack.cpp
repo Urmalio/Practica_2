@@ -32,7 +32,7 @@ void MaxStack::push(int valor){ q.push(valor); pq.push(valor);}
 void MaxStack::pop(){
 
  //almacena todos los valores que han sido eliminados de la pila, pero que no eran maximos
- static priority_queue< int, deque<int>, greater<int> > eliminated_nonmax;
+ static priority_queue< int > eliminated_nonmax;
 
  //si la pila esta vacía no se hace nada
  if (q.empty())
